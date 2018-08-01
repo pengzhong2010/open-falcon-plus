@@ -1,0 +1,31 @@
+{
+  "logLevel": "DEBUG",
+  "metric": "logdog-test",
+  "timer": 40,
+  "agent": "http://127.0.0.1:1988/v1/push",
+  "host": "",
+  "files": [
+    {
+      "path": "/data/pengzhong/goenv/src/github.com/open-falcon/falcon-plus/tmp/falcon-logdog/logfile",
+      "prefix": "aaa",
+      "suffix": ".log",
+      "keywords": [
+        {
+          "exp": "ERROR",
+          "tag": "AAA"
+        }
+      ]
+    },
+    {
+      "path": "/data/pengzhong/goenv/src/github.com/open-falcon/falcon-plus/tmp/falcon-logdog/logfile",
+      "prefix": "bbb",
+      "suffix": ".log",
+      "keywords": [
+        {
+          "exp": "key1",
+          "tag": "BBB"
+        }
+      ]
+    }
+  ]
+}
