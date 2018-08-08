@@ -75,19 +75,19 @@ function tailf() {
 }
 
 function build() {
-    go build
+    go build -o $module
     if [ $? -ne 0 ]; then
         exit $?
     fi
     mv $module $app
-    ./$app -v
+    #./$app -v
 }
 
 function pack() {
     build
     git log -1 --pretty=%h > gitversion
-    version=`./$app -v`
-    file_list="public control cfg.example.json $app"
+    version="1.0"
+    file_list="control cfg.example.json $app"
     echo "...tar $app-$version.tar.gz <= $file_list"
     tar zcf $app-$version.tar.gz gitversion $file_list
 }
