@@ -111,6 +111,30 @@ func ReadConfig(configFile string) (*Config, error) {
 	return config, nil
 }
 
+func Hostname() (string, error) {
+	hostname := Config().Hostname
+	if hostname != "" {
+		return hostname, nil
+	}
+
+	if os.Getenv("FALCON_ENDPOINT") != "" {
+		hostname = os.Getenv("FALCON_ENDPOINT")
+		return hostname, nil
+	}
+
+	if alinet.GetIntranetIp() != "" {
+		hostname = alinet.GetIntranetIp()
+		return hostname, nil
+	}
+
+	hostname, err := os.Hostname()
+	if err != nil {
+		log.Println("ERROR: os.Hostname() fail", err)
+	}
+	return hostname, err
+}
+
+
 // 检查配置项目是否正确
 func checkConfig(config *Config) error {
 	//bi.Dump("----checkConfig----")
@@ -121,12 +145,7 @@ func checkConfig(config *Config) error {
 	//检查 host
 	if config.Host == "" {
 
-		config.Host = alinet.GetIntranetIp()
-		if config.Host == "" {
-			if config.Host, err = os.Hostname(); err != nil {
-				return err
-			}
-		}
+		config.Host = Hostname()
 
 		log.Println("host not set will use system's name:", config.Host)
 
