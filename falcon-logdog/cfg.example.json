@@ -1,0 +1,20 @@
+{
+  "logLevel": "DEBUG",
+  "metric": "logdog-test",
+  "timer": 600,
+  "agent": "http://127.0.0.1:1988/v1/push",
+  "host": "",
+  "files": [
+    {
+      "path": "/tmp/logfile",
+      "prefix": "aaa",
+      "suffix": ".log",
+      "keywords": [
+        {
+          "exp": "ERROR",
+          "tag": "test"
+        }
+      ]
+    }
+  ]
+}
