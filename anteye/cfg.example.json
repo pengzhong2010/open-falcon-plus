@@ -1,0 +1,28 @@
+{
+    "debug": false,
+    "http": {
+        "enable": true,
+        "listen": "0.0.0.0:8001"
+    },
+    "mail" : {
+        "enable": true,
+        "url" : "http://mail.server:1986/mail/sender",
+        "receivers" : "nieanan@xiaomi.com,niean.sail@gmail.com"
+    },
+    "sms" : {
+        "enable": false,
+        "url" : "http://sms.server:1986/sms/sender",
+        "receivers" : "18001163885,13811685238"
+    },
+    "callback" : {
+        "enable": false,
+        "url" : "http://tycloudstart.com:1986/anteys/alarm"
+    },
+    "monitor" : {
+        "cluster" : [
+            "transfer,test.hostname01:6060/health",
+            "task,test.hostname01:8002/health",
+            "graph,test.hostname01:6071/health"
+        ]
+    }
+}
