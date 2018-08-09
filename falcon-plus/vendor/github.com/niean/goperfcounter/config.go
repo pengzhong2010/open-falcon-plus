@@ -7,6 +7,7 @@ import (
 	"os"
 	"strings"
 	"sync"
+	"github.com/pengzhong2010/go-alinet"
 )
 
 type GlobalConfig struct {
@@ -139,7 +140,7 @@ func parseConfig(cfg string) (GlobalConfig, error) {
 }
 
 func defaultHostname() string {
-	hostname, _ := os.Hostname()
+	hostname, _ := Hostname()
 	return hostname
 }
 
@@ -154,4 +155,18 @@ func readFileString(fn string) (string, error) {
 		return "", err
 	}
 	return strings.TrimSpace(string(b)), nil
+}
+
+func Hostname() (string, error) {
+	
+	if alinet.GetIntranetIp() != "" {
+		hostname := alinet.GetIntranetIp()
+		return hostname, nil
+	}else{
+		hostname, err := os.Hostname()
+		if err != nil {
+			log.Println("ERROR: os.Hostname() fail", err)
+		}
+		return hostname, err
+	}
 }
