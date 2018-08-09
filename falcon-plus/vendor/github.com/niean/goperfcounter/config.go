@@ -7,6 +7,7 @@ import (
 	"os"
 	"strings"
 	"sync"
+	"log"
 	"github.com/pengzhong2010/go-alinet"
 )
 
