@@ -124,7 +124,6 @@ func Hostname() (string, error) {
 		if err != nil {
 			log.Println("ERROR: os.Hostname() fail", err)
 		}
+		return hostname, err
 	}
-	
-	return hostname, err
 }
