@@ -19,6 +19,7 @@ import (
 	"encoding/json"
 	"log"
 	"sync"
+	"os"
 
 	"github.com/toolkits/file"
 	"github.com/pengzhong2010/go-alinet"
@@ -116,13 +117,14 @@ func ParseConfig(cfg string) {
 func Hostname() (string, error) {
 	
 	if alinet.GetIntranetIp() != "" {
-		hostname = alinet.GetIntranetIp()
+		hostname := alinet.GetIntranetIp()
 		return hostname, nil
+	}else{
+		hostname, err := os.Hostname()
+		if err != nil {
+			log.Println("ERROR: os.Hostname() fail", err)
+		}
 	}
-
-	hostname, err := os.Hostname()
-	if err != nil {
-		log.Println("ERROR: os.Hostname() fail", err)
-	}
+	
 	return hostname, err
 }
