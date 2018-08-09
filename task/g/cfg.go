@@ -19,7 +19,7 @@ import (
 	"encoding/json"
 	"log"
 	"sync"
-	"os"
+	_"os"
 
 	"github.com/toolkits/file"
 	"github.com/pengzhong2010/go-alinet"
