@@ -163,7 +163,7 @@ func _collect() {
 }
 
 func _collectorAlive() error {
-	hostname, err := os.Hostname()
+	hostname, err := g.Hostname()
 	if err != nil {
 		log.Println("get hostname failed,", err)
 		return err

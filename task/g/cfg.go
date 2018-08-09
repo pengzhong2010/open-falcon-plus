@@ -21,6 +21,7 @@ import (
 	"sync"
 
 	"github.com/toolkits/file"
+	"github.com/pengzhong2010/go-alinet"
 )
 
 type HttpConfig struct {
@@ -110,4 +111,18 @@ func ParseConfig(cfg string) {
 	config = &c
 
 	log.Println("g:ParseConfig ok, ", cfg)
+}
+
+func Hostname() (string, error) {
+	
+	if alinet.GetIntranetIp() != "" {
+		hostname = alinet.GetIntranetIp()
+		return hostname, nil
+	}
+
+	hostname, err := os.Hostname()
+	if err != nil {
+		log.Println("ERROR: os.Hostname() fail", err)
+	}
+	return hostname, err
 }
